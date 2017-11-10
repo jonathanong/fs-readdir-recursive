@@ -31,7 +31,7 @@ describe('fs.readdirSyncRecursive()', function () {
 
   it('should filter pass dir', function () {
     var files = read(path.join(__dirname, '..'), function (name, index, dir) {
-      return name[0] !== '.' && name !== 'node_modules' && name !== 'coverage' && dir !== __dirname &&  && name !== 'package-lock.json'
+      return name[0] !== '.' && name !== 'node_modules' && name !== 'coverage' && dir !== __dirname && name !== 'package-lock.json'
     })
 
     files.length.should.equal(4)
@@ -84,7 +84,7 @@ describe('fs.readdirSyncRecursive()', function () {
       fs.symlinkSync(path.join(__dirname, '..'), linkname, 'dir')
 
       var files = read(linkname, function (name) {
-        return name[0] !== '.' && name !== 'node_modules' && name !== 'coverage'  && name !== 'package-lock.json'
+        return name[0] !== '.' && name !== 'node_modules' && name !== 'coverage' && name !== 'package-lock.json'
       })
 
       files.length.should.equal(5)
