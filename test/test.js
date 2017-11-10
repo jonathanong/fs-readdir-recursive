@@ -29,6 +29,21 @@ describe('fs.readdirSyncRecursive()', function () {
 
   })
 
+  it('should filter pass dir', function () {
+    var files = read(path.join(__dirname, '..'), function (name, index, dir) {
+      return name[0] !== '.' && name !== 'node_modules' && name !== 'coverage' && dir !== __dirname;
+    })
+
+    files.length.should.equal(4)
+    files.sort().should.eql([
+      'index.js',
+      'LICENSE',
+      'package.json',
+      'README.md'
+    ].sort())
+
+  })
+
   it('should work with the symlinked file', function () {
     try {
       var linkname = __filename + '-link'
